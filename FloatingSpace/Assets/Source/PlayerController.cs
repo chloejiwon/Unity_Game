@@ -44,15 +44,18 @@ public class PlayerController: MonoBehaviour {
 						// Stop Spinning !!
 						// Character tired
 						IsTired = true;
-						rotateSpeed = 1;
+						rotateSpeed = 45f;
 
 					}
 				}
 		}else{
-			//지쳤을 경우
+			//지쳤을 경우 waitTime만큼 기다리고
+			// 다시 Player Controll할 수 있게 
+			Timer += Time.deltaTime;
 				if(Timer >= waitTime){
 					//2초 지났을 경우에
 					IsTired = true;
+					Timer = 0f;
 				}
 		}
 		transform.Rotate (Vector3.back * rotateSpeed * Time.deltaTime);
