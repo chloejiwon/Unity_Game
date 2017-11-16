@@ -5,8 +5,6 @@ using UnityEngine;
 public class npc1 : MonoBehaviour {
 
 	public float rotateSpeed = 1;
-	public GameObject start_dialogue;
-
 
 	// Use this for initialsization
 	void Start () {
