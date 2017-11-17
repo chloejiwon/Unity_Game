@@ -29,7 +29,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 
 		destroyWhenActivated =false;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -43,7 +43,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 			print (gameObject);
 			TextBox.call (gameObject.name);
             */
-            
+
 			Axis.Stop ();
 		}
         if (destroyWhenActivated)
