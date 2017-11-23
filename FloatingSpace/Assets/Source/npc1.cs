@@ -5,9 +5,11 @@ using UnityEngine;
 public class npc1 : MonoBehaviour {
 
 	public float rotateSpeed = 1;
+	public static int Score;
 
 	// Use this for initialsization
 	void Start () {
+		Score = 0;
 	}
 
 	// Update is called once per frame
@@ -33,6 +35,24 @@ public class npc1 : MonoBehaviour {
 		}
 
 	
+	}
+	public void CalculateScore(int num)
+	{
+		Score += num;
+	}
+	public static bool judge()
+	{
+		bool result = false;
+		if(Score > 100)
+		{
+			result = true;
+			//호감이라는뜻
+		}
+		else
+		{
+			//불합격^^
+		}
+		return result;
 	}
 
 }

@@ -54,17 +54,17 @@ public class Second_SelectTeam : MonoBehaviour {
 		{
 			print ("Yes");
 			//Team설정한것
-			/*		if (Character1.judge())
+			if (NPC.GetComponent<npc1>().judge())
 			{
 				PlayerController player = FindObjectOfType<PlayerController>();
-				player.Members[0] = FindObjectOfType<Character1>().name;
+				player.Members[0] = NPC.name;
 				print("합격!");
-				print(player.Members[0]);
+				//print(player.Members[0]);
 			}
 			else
 			{
 				//거절당하셧습니다..
-			}*/
+			}
 		}
 		else
 		{
