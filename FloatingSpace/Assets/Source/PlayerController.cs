@@ -45,7 +45,7 @@ public class PlayerController: MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-
+		
 		if (canMove) {
 
 			if (!IsTired) {
@@ -63,25 +63,28 @@ public class PlayerController: MonoBehaviour {
 
 				if (Input.GetKey (KeyCode.Space)) {
 
-					if (rotateSpeed <= 500) {
-						transform.Translate (Vector3.forward * forwardSpeed * Time.deltaTime);
+					if (rotateSpeed <= 300) {
+						transform.Translate (Vector3.forward );
+						// Something wrong with Time.deltaTime when it is called again
+						// First Try works fine.
+						//transform.Translate (Vector3.forward * forwardSpeed * Time.deltaTime);
 					}
 
 					//		if (NPC.name == "Axis")
 					//			NPC.SpeedUp ();
-
+			
 					rotateSpeed += 50 * Time.deltaTime;
 					//		forwardSpeed += (0.1f) * Time.deltaTime;
 					if (rotateSpeed >= 500) {
-						// Stop Spinning !!
+						// Stop Spinning !! 
 						// Character tired
-						rotateSpeed = 1;
+						rotateSpeed = 1; 
 						forwardSpeed = 0;
 						IsTired = true;
 
 					}
 				}
-
+				
 			} else {
 				// If Tired..
 				timer += Time.deltaTime;
@@ -97,6 +100,6 @@ public class PlayerController: MonoBehaviour {
 			transform.Rotate (Vector3.back * 1.0f);
 		}
 	}
-
+    
 
 }

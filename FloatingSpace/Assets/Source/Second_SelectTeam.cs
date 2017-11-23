@@ -19,31 +19,26 @@ public class Second_SelectTeam : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		// print("UUUUUUUUUUUUUUUUUUUU SELECT TEAM");
-		if (Input.GetKeyDown(KeyCode.Return))
-			Clicked = true;
+		//		if (Input.GetKeyDown(KeyCode.Return))
+		//			Clicked = true;
 		if (Clicked)
 		{
-			print("일로오긴하는데..이제스노우불러야함 ㅠㅠ");
 
+			// 다음꺼 부를 필요 없음
 			print(NPC.name);
 			Clicked = false;
-			//Dialogue.ENDALL = true;
-			//이제 스노우를 불러야돼
 
-			//NPC.InitOthers();
-			//   Destroy(NPC);
 			Talk.finish = true;
-			//Character1._start();
 
+			PlayerController player = FindObjectOfType<PlayerController> ();
+
+			player.gameObject.GetComponent<PlayerController> ().canMove = true;
 
 			this.transform.parent.GetChild(0).gameObject.SetActive(false);
 			this.transform.parent.GetChild(1).gameObject.SetActive(false);
 			this.transform.parent.GetChild(2).gameObject.SetActive(false);
 			print(transform.parent);
-			//   this.transform.parent.parent.GetChild(0).gameObject.SetActive(false);
 			this.transform.parent.gameObject.SetActive(false);
-			//  gameObject.SetActive(false);
 		}
 	}
 	public static void _start()
@@ -52,13 +47,14 @@ public class Second_SelectTeam : MonoBehaviour {
 		Character1._stop();
 
 	}
-	void OnMouseDown()
+	public void Click()
 	{
 		print("************SELECT_TEAM************");
 		if (gameObject.name == "YES")
 		{
+			print ("Yes");
 			//Team설정한것
-	/*		if (Character1.judge())
+			/*		if (Character1.judge())
 			{
 				PlayerController player = FindObjectOfType<PlayerController>();
 				player.Members[0] = FindObjectOfType<Character1>().name;
@@ -72,9 +68,12 @@ public class Second_SelectTeam : MonoBehaviour {
 		}
 		else
 		{
+			print ("No");
 			// Team하기 시러욧
+			//아무 일도 벌어지지 않고 그냥 지나간다...
 
 		}
 		Clicked = true;
 	}
+
 }
