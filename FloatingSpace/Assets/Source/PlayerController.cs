@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +22,7 @@ public class PlayerController: MonoBehaviour {
 	public cnr NPC;
 
     public string[] Members;
+		public int MemberNumber;
 
     public int score;
 
@@ -32,6 +33,7 @@ public class PlayerController: MonoBehaviour {
 		timer = 0.0f;
 		left_offset = new Vector3 (-0.6f, 0, 0);
 		right_offset = new Vector3 (0.6f, 0, 0);
+		MemberNumber = 0;
 		//DontDestroyOnLoad (transform.gameObject);
 	}
 
@@ -45,7 +47,7 @@ public class PlayerController: MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		
+
 		if (canMove) {
 
 			if (!IsTired) {
@@ -72,19 +74,19 @@ public class PlayerController: MonoBehaviour {
 
 					//		if (NPC.name == "Axis")
 					//			NPC.SpeedUp ();
-			
+
 					rotateSpeed += 50 * Time.deltaTime;
 					//		forwardSpeed += (0.1f) * Time.deltaTime;
 					if (rotateSpeed >= 500) {
-						// Stop Spinning !! 
+						// Stop Spinning !!
 						// Character tired
-						rotateSpeed = 1; 
+						rotateSpeed = 1;
 						forwardSpeed = 0;
 						IsTired = true;
 
 					}
 				}
-				
+
 			} else {
 				// If Tired..
 				timer += Time.deltaTime;
@@ -100,6 +102,6 @@ public class PlayerController: MonoBehaviour {
 			transform.Rotate (Vector3.back * 1.0f);
 		}
 	}
-    
+
 
 }
