@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -57,13 +57,27 @@ public class Second_SelectTeam : MonoBehaviour {
 			if (NPC.GetComponent<npc1>().judge())
 			{
 				PlayerController player = FindObjectOfType<PlayerController>();
-				player.Members[0] = NPC.name;
-				print("합격!");
+
+        int num = player.MemberNumber;
+        if(num < 3){
+				       player.Members[player.MemberNumber] = NPC.name;
+               player.MemberNumber++;
+               print("합격!");
+        }
+        else {
+          // 3명 이제 넘었다 !
+          // 더이상 ... 멤버를 할 수 없습니다.
+          // 퇴출 창 띄워야됨
+          print("3명 넘음 퇴출하시겠습니까?")
+
+        }
+
 				//print(player.Members[0]);
 			}
 			else
 			{
 				//거절당하셧습니다..
+        print("you are rejected!");
 			}
 		}
 		else
