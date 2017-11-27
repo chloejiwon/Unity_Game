@@ -130,6 +130,7 @@ public class Second_Dialogue : MonoBehaviour {
 
 		NPCname = DialogueStrings[0];
 
+		currentDialogueIndex++;
 		while (currentDialogueIndex < dialogueLength || !_isStringBeingRevealed)
 		{
 			if (!_isStringBeingRevealed)
