@@ -39,8 +39,11 @@ public class npc1 : MonoBehaviour {
 	public void CalculateScore(int num)
 	{
 		Score += num;
+
+		//Debug
+		Debug.Log(Score);
 	}
-	public static bool judge()
+	public bool judge()
 	{
 		bool result = false;
 		if(Score > 100)

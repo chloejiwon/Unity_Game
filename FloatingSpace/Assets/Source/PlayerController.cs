@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,19 +21,20 @@ public class PlayerController: MonoBehaviour {
 	public bool canMove=true;
 	public cnr NPC;
 
-    public string[] Members;
-		public int MemberNumber;
+	public int[] Members;
+	public int MemberNumber;
 
-    public int score;
+	public int score;
 
 	// Use this for initialization
 	void Start () {
 		NPC = FindObjectOfType<cnr> ();
-        score = 0;
+		score = 0;
 		timer = 0.0f;
 		left_offset = new Vector3 (-0.6f, 0, 0);
 		right_offset = new Vector3 (0.6f, 0, 0);
 		MemberNumber = 0;
+		Members = new int[3];
 		//DontDestroyOnLoad (transform.gameObject);
 	}
 

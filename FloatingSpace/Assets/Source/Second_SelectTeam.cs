@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,8 @@ public class Second_SelectTeam : MonoBehaviour {
 	public npc1 NPC;
 	public bool Clicked;
 	public Second_Dialogue Talk;
+
+	int npc_num;
 
 
 	// Use this for initialization
@@ -19,13 +21,25 @@ public class Second_SelectTeam : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		//		if (Input.GetKeyDown(KeyCode.Return))
-		//			Clicked = true;
+
+		// NPC Name 
+
+		if (NPC.name == "Character1") {
+			npc_num = 1;
+		} else if (NPC.name == "Character2") {
+			npc_num = 2;
+		} else if (NPC.name == "Character3") {
+			npc_num = 3;
+		} else if (NPC.name == "Character4") {
+			npc_num = 4;
+		}
+
 		if (Clicked)
 		{
 
 			// 다음꺼 부를 필요 없음
 			print(NPC.name);
+
 			Clicked = false;
 
 			Talk.finish = true;
@@ -58,27 +72,29 @@ public class Second_SelectTeam : MonoBehaviour {
 			{
 				PlayerController player = FindObjectOfType<PlayerController>();
 
-        int num = player.MemberNumber;
-        if(num < 3){
-				       player.Members[player.MemberNumber] = NPC.name;
-               player.MemberNumber++;
-               print("합격!");
-        }
-        else {
-          // 3명 이제 넘었다 !
-          // 더이상 ... 멤버를 할 수 없습니다.
-          // 퇴출 창 띄워야됨
-          print("3명 넘음 퇴출하시겠습니까?")
+				int num = player.MemberNumber;
+				if(num < player.Members.Length){
+			
+					player.Members[player.MemberNumber] = npc_num;
+					player.MemberNumber++;
+					print("합격!");
+				}
+			else {
+					// 3명 이제 넘었다 !
+					// 더이상 ... 멤버를 할 수 없습니다.
+					// 퇴출 창 띄워야됨
+					print("3명 넘음 퇴출하시겠습니까?");
 
-        }
+				}
 
 				//print(player.Members[0]);
 			}
 			else
 			{
 				//거절당하셧습니다..
-        print("you are rejected!");
+				print("you are rejected!");
 			}
+	
 		}
 		else
 		{

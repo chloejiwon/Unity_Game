@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,6 +56,9 @@ public class Second_Dialogue : MonoBehaviour {
 	public static int selectedAnswer;
 	public GameObject First;
 	public GameObject Second;
+
+	//Score
+	int score1,score2;
 
 	// Use this for initialization
 	void Start()
@@ -146,7 +150,7 @@ public class Second_Dialogue : MonoBehaviour {
 
 
 				}
-				else if(currentDialogueIndex %3 == 1)
+				else if(currentDialogueIndex %5 == 4)
 				{
 					//NPC 질문
 					isAnswer = false;
@@ -158,27 +162,29 @@ public class Second_Dialogue : MonoBehaviour {
 				else
 				{
 					// Player 대답 선택해야 하는 부분
-					//    print("대답들어왔다요");
 
 					Pressed = false;
 
 					isAnswer = true;
 
 					string temp;
-					temp = DialogueStrings[currentDialogueIndex] + "\n" + DialogueStrings[currentDialogueIndex + 1];
-					currentDialogueIndex += 2;
+					temp = DialogueStrings[currentDialogueIndex] + "\n" + DialogueStrings[currentDialogueIndex + 2];
 
 					StartCoroutine(DisplayString(temp));
 					_textComponent2.text += "Player";
 
+					// Calculating Score
+					score1 = Int32.Parse(DialogueStrings[currentDialogueIndex+1]);
+					score2 = Int32.Parse (DialogueStrings [currentDialogueIndex + 3]);
+
+					currentDialogueIndex += 4;
+
 				}
-
-				//  print(currentDialogueIndex);
-
 				if (currentDialogueIndex >= dialogueLength)
 				{
 					_isEndOfDialogue = true;
-					//start = false;
+					start = false;
+					end ();
 					Debug.Log ("Dialogue Ends!!!");
 				}
 			}
@@ -221,10 +227,6 @@ public class Second_Dialogue : MonoBehaviour {
 				{
 					yield return new WaitForSeconds(SecondsBetweenCharacters * CharacterRateMultiplier);
 				}
-			//	else
-			//	{
-			//		yield return new WaitForSeconds(SecondsBetweenCharacters);
-			//	}
 			}
 			else
 			{
@@ -234,7 +236,7 @@ public class Second_Dialogue : MonoBehaviour {
 
 		ShowIcon();
 
-		if (isAnswer) {
+	/*	if (isAnswer) {
 
 			if (Pressed) {
 				Debug.Log ("Pressed is True");
@@ -242,14 +244,16 @@ public class Second_Dialogue : MonoBehaviour {
 				if (selectedAnswer == 1) {
 					//1 
 					print("1111");
+					NPC.CalculateScore (score1);
 
 				} else {
 					print ("2222");
+					NPC.CalculateScore (score2);
 				}
 				Pressed = false;
 			}
 
-		}
+		}*/
 
 		while (true)
 		{
@@ -260,9 +264,10 @@ public class Second_Dialogue : MonoBehaviour {
 					if (selectedAnswer == 1) {
 						//1 
 						print("1111");
-
+						NPC.CalculateScore(score1);
 					} else {
 						print ("2222");
+						NPC.CalculateScore(score2);
 					}
 					Pressed = false;
 					break;
@@ -337,7 +342,7 @@ public class Second_Dialogue : MonoBehaviour {
 		print("Dialouge end내부에서 SElect Team부름");
 
 		ChoicePopupBG.SetActive(true);
-		SelectTeam._start();
+		//SelectTeam._start();
 
 //		Player.SetActive(false);
 		BG.SetActive(false);
