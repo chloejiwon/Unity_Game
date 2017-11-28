@@ -57,7 +57,7 @@ public class NPC_ActivateTextAtLine : MonoBehaviour {
 			Talk.CharName = gameObject.name;
 			Debug.Log (Talk.CharName);
 
-
+		
 
 			Talk.ReloadScript(theText);
 			Talk.currentLine = startLine;

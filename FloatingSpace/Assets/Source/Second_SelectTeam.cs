@@ -5,9 +5,14 @@ using UnityEngine;
 public class Second_SelectTeam : MonoBehaviour {
 
 
+	//temp
+	public GameObject character;
+
 	public npc1 NPC;
 	public bool Clicked;
 	public Second_Dialogue Talk;
+
+	public string npc_name;
 
 	int npc_num;
 
@@ -33,8 +38,10 @@ public class Second_SelectTeam : MonoBehaviour {
 
 			Talk.finish = true;
 
+			Debug.Log ("---Select_Team-----");
 			Debug.Log (Talk.CharName);
-			NPC.destroyWhenFinished (Talk.CharName);
+			//NPC.destroyWhenFinished (Talk.CharName);
+			character.GetComponent<npc1>().destroyWhenFinished(character.name);
 
 			PlayerController player = FindObjectOfType<PlayerController> ();
 
@@ -58,23 +65,26 @@ public class Second_SelectTeam : MonoBehaviour {
 		{
 			print ("Yes");
 			//Team설정한것
-			NPC = FindObjectOfType<npc1>();
-			if (NPC.GetComponent<npc1>().judge())
+			NPC =FindObjectOfType<npc1>();
+			character = GameObject.Find (npc_name);
+			Debug.Log (character.GetComponent<npc1> ().Score);
+			if (character.GetComponent<npc1>().judge())
 			{
 				PlayerController player = FindObjectOfType<PlayerController>();
 
 				int num = player.MemberNumber;
 				if(num < player.Members.Length){
-					SetNpcNum ();
+				//	SetNpcNum ();
 					Debug.Log (npc_num);
 					Debug.Log (NPC.name);
-					if (NPC.name == "Character1") {
+					Debug.Log (character.name);
+					if (character.name == "Character1") {
 						npc_num = 1;
-					} else if (NPC.name == "Character2") {
+					} else if (character.name == "Character2") {
 						npc_num = 2;
-					} else if (NPC.name == "Character3") {
+					} else if (character.name == "Character3") {
 						npc_num = 3;
-					} else if (NPC.name == "Character4") {
+					} else if (character.name == "Character4") {
 						npc_num = 4;
 					}
 					// why number does not change ??? :(...

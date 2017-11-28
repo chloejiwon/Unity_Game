@@ -51,6 +51,9 @@ public class Second_Dialogue : MonoBehaviour {
 	public npc1 NPC;
 
 
+	//TEMP!!!!
+	public GameObject character;
+
 //	public GameObject Duck;
 //	public GameObject Player;
 
@@ -267,9 +270,13 @@ public class Second_Dialogue : MonoBehaviour {
 						//1 
 						print("1111");
 						NPC.CalculateScore(score1);
+
+						character.GetComponent<npc1> ().CalculateScore (score1);
 					} else {
 						print ("2222");
 						NPC.CalculateScore(score2);
+
+						character.GetComponent<npc1> ().CalculateScore (score2);
 					}
 					Pressed = false;
 					break;
@@ -318,6 +325,8 @@ public class Second_Dialogue : MonoBehaviour {
 	public void _start()
 	{
 		start = true;
+		//TEMP!!!!
+		character = GameObject.Find(CharName);
 	}
 	public void ReloadScript(TextAsset theText)
 	{
@@ -349,6 +358,9 @@ public class Second_Dialogue : MonoBehaviour {
 		ChoicePopupBG.transform.GetChild (0).gameObject.SetActive (true);
 		ChoicePopupBG.transform.GetChild (1).gameObject.SetActive (true);
 		ChoicePopupBG.transform.GetChild (2).gameObject.SetActive (true);
+
+		ChoicePopupBG.transform.GetChild (1).GetComponent<Second_SelectTeam>().npc_name = CharName;
+		ChoicePopupBG.transform.GetChild (2).GetComponent<Second_SelectTeam>().npc_name = CharName;
 
 	//	Player.SetActive(false);
 		BG.SetActive(false);
