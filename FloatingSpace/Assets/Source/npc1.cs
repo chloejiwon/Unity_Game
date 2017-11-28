@@ -5,7 +5,7 @@ using UnityEngine;
 public class npc1 : MonoBehaviour {
 
 	public float rotateSpeed = 1;
-	public static int Score;
+	public int Score;
 	public Second_Dialogue Talk;
 
 	// Use this for initialsization

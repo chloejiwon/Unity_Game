@@ -22,19 +22,6 @@ public class Second_SelectTeam : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		// NPC Name 
-		NPC = FindObjectOfType<npc1>();
-		if (!NPC) {
-			if (NPC.name == "Character1") {
-				npc_num = 1;
-			} else if (NPC.name == "Character2") {
-				npc_num = 2;
-			} else if (NPC.name == "Character3") {
-				npc_num = 3;
-			} else if (NPC.name == "Character4") {
-				npc_num = 4;
-			}
-		}
 
 		if (Clicked)
 		{
@@ -71,16 +58,30 @@ public class Second_SelectTeam : MonoBehaviour {
 		{
 			print ("Yes");
 			//Team설정한것
+			NPC = FindObjectOfType<npc1>();
 			if (NPC.GetComponent<npc1>().judge())
 			{
 				PlayerController player = FindObjectOfType<PlayerController>();
 
 				int num = player.MemberNumber;
 				if(num < player.Members.Length){
-			
+					SetNpcNum ();
+					Debug.Log (npc_num);
+					Debug.Log (NPC.name);
+					if (NPC.name == "Character1") {
+						npc_num = 1;
+					} else if (NPC.name == "Character2") {
+						npc_num = 2;
+					} else if (NPC.name == "Character3") {
+						npc_num = 3;
+					} else if (NPC.name == "Character4") {
+						npc_num = 4;
+					}
+					// why number does not change ??? :(...
 					player.Members[player.MemberNumber] = npc_num;
 					player.MemberNumber++;
 					print("합격!");
+
 				}
 			else {
 					// 3명 이제 넘었다 !
@@ -107,5 +108,21 @@ public class Second_SelectTeam : MonoBehaviour {
 
 		}
 		Clicked = true;
+	}
+	void SetNpcNum(){
+
+		if (!NPC) {
+			Debug.Log ("SetNPC NUm  들ㅓㅘ?");
+			Debug.Log (NPC.name);
+			if (NPC.name == "Character1") {
+				npc_num = 1;
+			} else if (NPC.name == "Character2") {
+				npc_num = 2;
+			} else if (NPC.name == "Character3") {
+				npc_num = 3;
+			} else if (NPC.name == "Character4") {
+				npc_num = 4;
+			}
+		}
 	}
 }

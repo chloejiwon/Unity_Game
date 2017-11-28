@@ -309,7 +309,6 @@ public class Second_Dialogue : MonoBehaviour {
 
 			finish = true;
 
-			//???Here????
 
 			return;
 		}
