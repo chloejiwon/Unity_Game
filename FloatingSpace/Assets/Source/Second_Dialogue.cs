@@ -44,6 +44,7 @@ public class Second_Dialogue : MonoBehaviour {
 
 
 	private string NPCname;
+	public string CharName;
 	private bool isAnswer;
 	public static  bool Pressed;
 
@@ -307,6 +308,9 @@ public class Second_Dialogue : MonoBehaviour {
 			//이제 다일로그 사라지고 선택창이 튀어나와야함!!
 
 			finish = true;
+
+			//???Here????
+
 			return;
 		}
 
@@ -343,9 +347,11 @@ public class Second_Dialogue : MonoBehaviour {
 		print("Dialouge end내부에서 SElect Team부름");
 
 		ChoicePopupBG.SetActive(true);
-		//SelectTeam._start();
+		ChoicePopupBG.transform.GetChild (0).gameObject.SetActive (true);
+		ChoicePopupBG.transform.GetChild (1).gameObject.SetActive (true);
+		ChoicePopupBG.transform.GetChild (2).gameObject.SetActive (true);
 
-//		Player.SetActive(false);
+	//	Player.SetActive(false);
 		BG.SetActive(false);
 	}
 	public void Finish()

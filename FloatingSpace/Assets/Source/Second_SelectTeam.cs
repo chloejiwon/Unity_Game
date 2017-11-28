@@ -23,15 +23,17 @@ public class Second_SelectTeam : MonoBehaviour {
 	void Update () {
 
 		// NPC Name 
-
-		if (NPC.name == "Character1") {
-			npc_num = 1;
-		} else if (NPC.name == "Character2") {
-			npc_num = 2;
-		} else if (NPC.name == "Character3") {
-			npc_num = 3;
-		} else if (NPC.name == "Character4") {
-			npc_num = 4;
+		NPC = FindObjectOfType<npc1>();
+		if (!NPC) {
+			if (NPC.name == "Character1") {
+				npc_num = 1;
+			} else if (NPC.name == "Character2") {
+				npc_num = 2;
+			} else if (NPC.name == "Character3") {
+				npc_num = 3;
+			} else if (NPC.name == "Character4") {
+				npc_num = 4;
+			}
 		}
 
 		if (Clicked)
@@ -44,6 +46,9 @@ public class Second_SelectTeam : MonoBehaviour {
 
 			Talk.finish = true;
 
+			Debug.Log (Talk.CharName);
+			NPC.destroyWhenFinished (Talk.CharName);
+
 			PlayerController player = FindObjectOfType<PlayerController> ();
 
 			player.gameObject.GetComponent<PlayerController> ().canMove = true;
@@ -51,15 +56,13 @@ public class Second_SelectTeam : MonoBehaviour {
 			this.transform.parent.GetChild(0).gameObject.SetActive(false);
 			this.transform.parent.GetChild(1).gameObject.SetActive(false);
 			this.transform.parent.GetChild(2).gameObject.SetActive(false);
-			print(transform.parent);
 			this.transform.parent.gameObject.SetActive(false);
 		}
 	}
-	public static void _start()
+	public void _start()
 	{
 		print("---SElect Team불러짐----");
-		Character1._stop();
-
+		NPC = FindObjectOfType<npc1>();
 	}
 	public void Click()
 	{
@@ -105,5 +108,4 @@ public class Second_SelectTeam : MonoBehaviour {
 		}
 		Clicked = true;
 	}
-
 }

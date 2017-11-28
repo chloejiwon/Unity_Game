@@ -6,10 +6,12 @@ public class npc1 : MonoBehaviour {
 
 	public float rotateSpeed = 1;
 	public static int Score;
+	public Second_Dialogue Talk;
 
 	// Use this for initialsization
 	void Start () {
 		Score = 0;
+		Talk = FindObjectOfType<Second_Dialogue>();
 	}
 
 	// Update is called once per frame
@@ -57,5 +59,9 @@ public class npc1 : MonoBehaviour {
 		}
 		return result;
 	}
-
+	public void destroyWhenFinished(string name){
+		Debug.Log ("Destroy?");
+		if (Talk.finish && name==gameObject.name)
+			Destroy (gameObject);
+	}
 }

@@ -18,6 +18,7 @@ public class NPC_ActivateTextAtLine : MonoBehaviour {
 
 	public Second_Dialogue Talk;
 
+
 	// Use this for initialization
 	void Start () {
 		TextBox = FindObjectOfType<TextBoxManager> ();
@@ -34,10 +35,14 @@ public class NPC_ActivateTextAtLine : MonoBehaviour {
 
 			Talk.ReloadScript(theText);
 		}
-		if (destroyWhenActivated)
-			Destroy(gameObject);
-		if (Talk.finish)
-			Destroy(gameObject);
+/*		if (destroyWhenActivated) {
+			Debug.Log ("Destroy where?");
+			Destroy (gameObject);
+		
+		}if (Talk.finish) {
+			Debug.Log ("Talk Finish Destroy");
+			Destroy (gameObject);
+		}*/
 	}
 
 	void OnTriggerEnter(Collider other){
@@ -48,6 +53,11 @@ public class NPC_ActivateTextAtLine : MonoBehaviour {
 				return;
 			}
 			print("Collide?");
+
+			Talk.CharName = gameObject.name;
+			Debug.Log (Talk.CharName);
+
+
 
 			Talk.ReloadScript(theText);
 			Talk.currentLine = startLine;
@@ -71,4 +81,5 @@ public class NPC_ActivateTextAtLine : MonoBehaviour {
 		destroyWhenActivated = true;
 
 	}
+
 }
