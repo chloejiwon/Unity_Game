@@ -66,11 +66,12 @@ public class PlayerController: MonoBehaviour {
 
 				if (Input.GetKey (KeyCode.Space)) {
 
-					if (rotateSpeed <= 300) {
-						transform.Translate (Vector3.forward );
+					if (rotateSpeed <= 500) {
+						//forwardSpeed = forwardSpeed * Time.deltaTime;
+						//transform.Translate (Vector3.forward);
 						// Something wrong with Time.deltaTime when it is called again
 						// First Try works fine.
-						//transform.Translate (Vector3.forward * forwardSpeed * Time.deltaTime);
+						transform.Translate (Vector3.forward * forwardSpeed * Time.deltaTime);
 					}
 
 					//		if (NPC.name == "Axis")
@@ -82,7 +83,7 @@ public class PlayerController: MonoBehaviour {
 						// Stop Spinning !!
 						// Character tired
 						rotateSpeed = 1;
-						forwardSpeed = 0;
+						//forwardSpeed = 0;
 						IsTired = true;
 
 					}
@@ -100,6 +101,8 @@ public class PlayerController: MonoBehaviour {
 
 			transform.Rotate (Vector3.back * rotateSpeed * Time.deltaTime);
 		} else {
+			rotateSpeed = 45f;
+
 			transform.Rotate (Vector3.back * 1.0f);
 		}
 	}
