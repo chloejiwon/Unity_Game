@@ -8,6 +8,9 @@ public class Second_SelectTeam : MonoBehaviour {
 	//temp
 	public GameObject character;
 
+	//When Kick Out
+	public GameObject kickOut;
+
 	public npc1 NPC;
 	public bool Clicked;
 	public Second_Dialogue Talk;
@@ -32,7 +35,7 @@ public class Second_SelectTeam : MonoBehaviour {
 		{
 
 			// 다음꺼 부를 필요 없음
-			print(NPC.name);
+//			print(NPC.name);
 
 			Clicked = false;
 
@@ -98,6 +101,10 @@ public class Second_SelectTeam : MonoBehaviour {
 					// 더이상 ... 멤버를 할 수 없습니다.
 					// 퇴출 창 띄워야됨
 					print("3명 넘음 퇴출하시겠습니까?");
+					kickOut.SetActive(true);
+					kickOut.transform.GetChild (0).gameObject.SetActive (true);
+					kickOut.transform.GetChild (1).gameObject.SetActive (true);
+					kickOut.transform.GetChild (2).gameObject.SetActive (true);
 
 				}
 

@@ -16,6 +16,9 @@ public class Second_Dialogue : MonoBehaviour {
 	public GameObject NameBox;
 	public GameObject BG;
 	public GameObject ChoicePopupBG;
+	public GameObject KickOut;
+	public GameObject GameOver;
+
 	public static bool TeamChoice;
 
 
@@ -77,6 +80,10 @@ public class Second_Dialogue : MonoBehaviour {
 		textBox.SetActive(false);
 		NameBox.SetActive(false);
 		ChoicePopupBG.SetActive(false);
+		KickOut.SetActive (false);
+		GameOver.SetActive (false);
+
+
 //		Player.SetActive(false);
 		BG.SetActive (false);
 		First.SetActive(false);
