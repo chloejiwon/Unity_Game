@@ -10,6 +10,10 @@ public class Ending : MonoBehaviour {
   public bool isOver;
   public float done_X;
 
+  // 여러가지 엔딩들
+  public string ending;
+  GameObject Endiing;
+
 	// Use this for initialsization
 	void Start () {
     isOver = false;
@@ -18,26 +22,51 @@ public class Ending : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-    Decide_Ending();
+    if(isOver){
+      Decide_Ending();
+    }
 
 	}
 
+  void isEnd(){
+    // when player reached the end (met every characters)
+    // as an example
+    if(player.transform.position.x >= done_X)
+      isOver = true;
+
+  }
+
   void Decide_Ending(){
-    if(player.transform.position.x>=done_X){
       // when player reached the end (met every characters)
-      // as an example
-      if(player.MemberNumber == 3){
-        // 3명 만났을 때
-        
-      }else if(player.MemberNumber == 2){
+      // decide the endings according to the choice of members
 
-      }else if(player.MemberNumber=1){
-
-      }else {
-        // 아무 캐릭터도 고르지 않았을 때
+      switch(player.MemberNumber){
+        case 1:
+          // 3명 만났을 때
+          // 각각 케이스별로 조사....(완전 망했다...머야 이 노가다 ㅠ )
+          if(player.Members[0] == 1){
+            if(player.Members[1]==2){
+              if(player.Members[2]==3){
+                // Character 1,2,3골랐을 때
+                ending = "ending1";
+                // 첫번째 엔딩 부과
+                // 각 ending name에 해당하는 행성과 panel을 부른다
+              }
+            }
+          }
+          break;
+        case 2:
+          break;
+        case 3:
+          break;
+        case 0:
+          // 아무 캐릭터도 고르지 않았을 때
+          ending="nothing";
+          break;
       }
+
+      Ending = Find(ending);
 
     }
 
-  }
 }
