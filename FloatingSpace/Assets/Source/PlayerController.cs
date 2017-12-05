@@ -26,6 +26,10 @@ public class PlayerController: MonoBehaviour {
 
 	public int score;
 
+
+	//images
+	public Sprite []npcImages;
+
 	// Use this for initialization
 	void Start () {
 		NPC = FindObjectOfType<cnr> ();
@@ -52,6 +56,8 @@ public class PlayerController: MonoBehaviour {
 		if (canMove) {
 
 			if (!IsTired) {
+
+				FriendManager ();
 
 				if (Input.GetKey (KeyCode.LeftArrow) == true) {
 					Vector3 desiredPos = transform.position + left_offset;
@@ -107,5 +113,18 @@ public class PlayerController: MonoBehaviour {
 		}
 	}
 
+	void FriendManager(){
+		// upload member's images to the canvas
+		int cnt = 1;
+		string name;
+		GameObject friend;
+		if (MemberNumber != 0) {
+			foreach (int i in Members) {
+				name = "friend" + cnt;
+				friend = GameObject.Find (name);
+				friend.GetComponent<SpriteRenderer> ().sprite = npcImages [i];
+			}
+		}
+	}
 
 }
