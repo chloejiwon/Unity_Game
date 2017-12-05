@@ -8,7 +8,7 @@ public class Ending : MonoBehaviour {
 	// 끝났는지 확인
 	public GameObject player;
 	public bool isOver;
-	public float done_X;
+	public float done_Z;
 
 	// 여러가지 엔딩들
 	public string ending;
@@ -31,7 +31,7 @@ public class Ending : MonoBehaviour {
 	void isEnd(){
 		// when player reached the end (met every characters)
 		// as an example
-		if(player.transform.position.x >= done_X)
+		if(player.transform.position.x >= done_Z)
 			isOver = true;
 
 	}
