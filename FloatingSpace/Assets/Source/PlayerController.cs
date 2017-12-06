@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -120,9 +120,12 @@ public class PlayerController: MonoBehaviour {
 		GameObject friend;
 		if (MemberNumber != 0) {
 			foreach (int i in Members) {
-				name = "friend" + cnt;
-				friend = GameObject.Find (name);
-				friend.GetComponent<SpriteRenderer> ().sprite = npcImages [i];
+				if(i!=0){
+					name = "friend" + cnt;
+					friend = GameObject.Find (name);
+					friend.GetComponent<SpriteRenderer> ().sprite = npcImages [i-1];
+					cnt++;
+				}
 			}
 		}
 	}
