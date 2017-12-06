@@ -58,7 +58,7 @@ public class PlayerController: MonoBehaviour {
 			if (!IsTired) {
 
 				FriendManager ();
-
+				
 				if (Input.GetKey (KeyCode.LeftArrow) == true) {
 					Vector3 desiredPos = transform.position + left_offset;
 					Vector3 smoothedPos = Vector3.Lerp (transform.position, desiredPos,smoothSpeed);
@@ -121,6 +121,7 @@ public class PlayerController: MonoBehaviour {
 		if (MemberNumber != 0) {
 			foreach (int i in Members) {
 				if(i!=0){
+					// i가 0이라는 것은 아직 아무 친구도 없는 상태를 의미한다
 					name = "friend" + cnt;
 					friend = GameObject.Find (name);
 					friend.GetComponent<SpriteRenderer> ().sprite = npcImages [i-1];
