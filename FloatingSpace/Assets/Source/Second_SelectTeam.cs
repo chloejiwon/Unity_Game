@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -119,6 +119,7 @@ public class Second_SelectTeam : MonoBehaviour {
 		}
 		else
 		{
+			character = GameObject.Find (npc_name);
 			print ("No");
 			// Team하기 시러욧
 			//아무 일도 벌어지지 않고 그냥 지나간다...
