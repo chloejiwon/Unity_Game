@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController: MonoBehaviour {
 
@@ -58,7 +59,7 @@ public class PlayerController: MonoBehaviour {
 			if (!IsTired) {
 
 				FriendManager ();
-				
+
 				if (Input.GetKey (KeyCode.LeftArrow) == true) {
 					Vector3 desiredPos = transform.position + left_offset;
 					Vector3 smoothedPos = Vector3.Lerp (transform.position, desiredPos,smoothSpeed);
@@ -124,7 +125,7 @@ public class PlayerController: MonoBehaviour {
 					// i가 0이라는 것은 아직 아무 친구도 없는 상태를 의미한다
 					name = "friend" + cnt;
 					friend = GameObject.Find (name);
-					friend.GetComponent<SpriteRenderer> ().sprite = npcImages [i-1];
+					friend.GetComponent<Image> ().sprite = npcImages [i-1];
 					cnt++;
 				}
 			}
