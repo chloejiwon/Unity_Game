@@ -30,9 +30,14 @@ public class PlayerController: MonoBehaviour {
 
 	//images
 	public Sprite []npcImages;
+	public bool hasFriend;
 
 	// Use this for initialization
 	void Start () {
+		string name;
+		GameObject friend;
+
+		hasFriend = false;
 		NPC = FindObjectOfType<cnr> ();
 		score = 0;
 		timer = 0.0f;
@@ -40,6 +45,18 @@ public class PlayerController: MonoBehaviour {
 		right_offset = new Vector3 (0.6f, 0, 0);
 		MemberNumber = 0;
 		Members = new int[3];
+
+		if (Members [0] == 0) {
+			// no friends
+			for(int i=1;i<4;i++) {
+
+				name = "friend" + i;
+				friend = GameObject.Find (name);
+				friend.SetActive (false);
+
+			}
+		}
+
 		//DontDestroyOnLoad (transform.gameObject);
 	}
 
@@ -58,7 +75,10 @@ public class PlayerController: MonoBehaviour {
 
 			if (!IsTired) {
 
-				FriendManager ();
+				if (Members [0] != 0) {
+					hasFriend = true;
+					FriendManager ();
+				}
 
 				if (Input.GetKey (KeyCode.LeftArrow) == true) {
 					Vector3 desiredPos = transform.position + left_offset;
@@ -119,7 +139,20 @@ public class PlayerController: MonoBehaviour {
 		int cnt = 1;
 		string name;
 		GameObject friend;
+		if (hasFriend) {
+			// First to show images
+			foreach (int i in Members) {
+				if (i != 0) {
+					name = "friend" + cnt;
+					friend = GameObject.Find ("Friends");
+					friend.transform.FindChild(name).gameObject.SetActive (true);
+					cnt++;
+				}
+			}
+			hasFriend = false;
+		}
 		if (MemberNumber != 0) {
+			cnt = 1;
 			foreach (int i in Members) {
 				if(i!=0){
 					// i가 0이라는 것은 아직 아무 친구도 없는 상태를 의미한다
@@ -129,6 +162,7 @@ public class PlayerController: MonoBehaviour {
 					cnt++;
 				}
 			}
+
 		}
 	}
 
