@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +7,9 @@ public class npc1 : MonoBehaviour {
 	public float rotateSpeed = 1;
 	public int Score;
 	public Second_Dialogue Talk;
+
+
+
 
 	// Use this for initialsization
 	void Start () {
@@ -21,7 +24,7 @@ public class npc1 : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		// npc 가 player와 충돌 했을 때 
+		// npc 가 player와 충돌 했을 때
 		// 대화 시작
 		print("collision Enter");
 
@@ -36,7 +39,7 @@ public class npc1 : MonoBehaviour {
 
 		}
 
-	
+
 	}
 	public void CalculateScore(int num)
 	{
@@ -63,5 +66,15 @@ public class npc1 : MonoBehaviour {
 		Debug.Log ("Destroy?");
 		if (Talk.finish && name==gameObject.name)
 			Destroy (gameObject);
+	}
+
+	public void ShowScore(int score){
+		// 지금 한 answer가 어떤 score인지 띄워줘야함!
+		GameObject scoreText;
+
+		scoreText = this.gameObject.FindChild("score");
+		//score.
+		scoreText.SetActive(true);
+
 	}
 }
