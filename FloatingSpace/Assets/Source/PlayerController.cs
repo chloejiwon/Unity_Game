@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +14,6 @@ public class PlayerController: MonoBehaviour {
 
 	// Too many speed.. character needs to take a rest a little while!!!
 	bool IsTired;
-	bool StillTired;
 	float timer;
 	float fps;
 	float waitingTime = 1;
@@ -38,7 +37,6 @@ public class PlayerController: MonoBehaviour {
 		string name;
 		GameObject friend;
 
-		StillTired = false;
 		hasFriend = false;
 		NPC = FindObjectOfType<cnr> ();
 		score = 0;
@@ -125,12 +123,6 @@ public class PlayerController: MonoBehaviour {
 				if (timer > waitingTime) {
 					timer = 0;
 					IsTired = false;
-					TiredMessage();
-				}else if (timer==0){
-					StillTired = true;
-					TiredMessage();
-					StillTired = false;
-
 				}
 			}
 
@@ -172,20 +164,6 @@ public class PlayerController: MonoBehaviour {
 			}
 
 		}
-	}
-
-	void TiredMessage(){
-			// 피곤해서 멈췄다는 메세지 띄우기
-
-			if(IsTired && StillTired){
-				GameObject Tired = GameObject.Find("Tired");
-				Tired.transform.GetChild().gameObject.SetActive(true);
-			}
-			else if(!IsTired){
-				GameObject Tired = GameObject.Find("Tired");
-				Tired.transform.GetChild().gameObject.SetActive(false);
-			}
-
 	}
 
 }

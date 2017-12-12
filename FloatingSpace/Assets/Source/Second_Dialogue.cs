@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +12,17 @@ public class Second_Dialogue : MonoBehaviour {
 	private Text _textComponent2;
 
 
+
 	public GameObject textBox;
 	public GameObject NameBox;
 	public GameObject BG;
 	public GameObject ChoicePopupBG;
 	public GameObject KickOut;
 	public GameObject GameOver;
+
+	/*********** Choose Answer ***********/
+	GameObject firstAns;
+	GameObject secondAns;
 
 	public static bool TeamChoice;
 
@@ -97,6 +102,10 @@ public class Second_Dialogue : MonoBehaviour {
 
 		if (endAtLines == 0)
 			endAtLines = textLines.Length - 1;
+
+		/************** Answers *****************/
+		firstAns = this.transform.GetChild (0).gameObject;
+		secondAns = this.transform.GetChild (1).gameObject;
 	}
 
 	// Update is called once per frame
@@ -182,6 +191,13 @@ public class Second_Dialogue : MonoBehaviour {
 					string temp;
 					temp = DialogueStrings[currentDialogueIndex] + "\n" + DialogueStrings[currentDialogueIndex + 2];
 
+					/*********** Set Answers *********/
+					string temp1, temp2;
+					temp1 = DialogueStrings [currentDialogueIndex];
+					temp2 = DialogueStrings [currentDialogueIndex + 2];
+
+
+
 					StartCoroutine(DisplayString(temp));
 					_textComponent2.text += "Player";
 
@@ -249,19 +265,22 @@ public class Second_Dialogue : MonoBehaviour {
 		ShowIcon();
 
 	/*	if (isAnswer) {
+
 			if (Pressed) {
 				Debug.Log ("Pressed is True");
 				Debug.Log (selectedAnswer);
 				if (selectedAnswer == 1) {
-					//1
+					//1 
 					print("1111");
 					NPC.CalculateScore (score1);
+
 				} else {
 					print ("2222");
 					NPC.CalculateScore (score2);
 				}
 				Pressed = false;
 			}
+
 		}*/
 
 		while (true)
@@ -271,28 +290,23 @@ public class Second_Dialogue : MonoBehaviour {
 				if (Pressed) {
 					Debug.Log (selectedAnswer);
 					if (selectedAnswer == 1) {
-						//1
+						//1 
 						print("1111");
 						NPC.CalculateScore(score1);
 
 						character.GetComponent<npc1> ().CalculateScore (score1);
-            //you should post the score!
-            character.GetComponent<npc1>().ShowScore(score1);
 					} else {
 						print ("2222");
 						NPC.CalculateScore(score2);
 
 						character.GetComponent<npc1> ().CalculateScore (score2);
-            //you should post the score!
-            character.GetComponent<npc1>().ShowScore(score2);
 					}
-
 					Pressed = false;
 					break;
 				}
 
 			}
-
+			
 			if (Input.GetKeyDown(DialogueInput) && Pressed==true  )
 			{
 				Pressed = false;
