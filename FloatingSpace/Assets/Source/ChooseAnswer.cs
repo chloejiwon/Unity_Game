@@ -5,6 +5,10 @@ using UnityEngine;
 public class ChooseAnswer : MonoBehaviour {
 
     private int num;
+
+	public Color mouseOverColor;
+
+	bool mouseOver = false;
 	// Use this for initialization
 	void Start () {
         if (gameObject.name == "FirstAnswer")
@@ -27,9 +31,19 @@ public class ChooseAnswer : MonoBehaviour {
 			Second_Dialogue.selectedAnswer = num;
 			Second_Dialogue.Pressed = true;
         }
+		Debug.Log(gameObject.name);
        
     }
-/*	public Transform target;
+
+/*	void OnMouseOver(){
+		//If your mouse hovers over the GameObject with the script attached, output this message
+		GetComponent<Renderer>().material.SetColor("_Color",Color.blue);
+
+	}
+	void onMouseExit(){
+		GetComponent<Renderer>().material.SetColor("_Color",Color.clear);
+	}*/
+	public Transform target;
 
 	public float smoothSpeed = 0.125f;
 	public Vector3 offset;
@@ -38,5 +52,5 @@ public class ChooseAnswer : MonoBehaviour {
 		Vector3 desiredPos = target.position + offset;
 		Vector3 smoothedPos = Vector3.Lerp (transform.position, desiredPos,smoothSpeed);
 		transform.position = smoothedPos;
-	}*/
+	}
 }
