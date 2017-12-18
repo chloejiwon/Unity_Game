@@ -58,6 +58,8 @@ public class Ending : MonoBehaviour {
 		case 2:
 			break;
 		case 3:
+				
+				
 			break;
 		case 0:
 			// 아무 캐릭터도 고르지 않았을 때
