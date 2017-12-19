@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class Second_Dialogue : MonoBehaviour {
 
+	// BUttons(which is highlighted
+	public GameObject FirstButton;
+	public GameObject SecondButton;
 
 	public bool start;
 	private Text _textComponent;
@@ -32,7 +35,7 @@ public class Second_Dialogue : MonoBehaviour {
 	public float SecondsBetweenCharacters = 0.15f;
 	public float CharacterRateMultiplier = 0.5f;
 
-	public KeyCode DialogueInput = KeyCode.Return;
+	public KeyCode DialogueInput = KeyCode.Space;
 
 	private bool _isStringBeingRevealed = false;
 	private bool _isDialoguePlaying = false;
@@ -61,9 +64,6 @@ public class Second_Dialogue : MonoBehaviour {
 
 	//TEMP!!!!
 	public GameObject character;
-
-//	public GameObject Duck;
-//	public GameObject Player;
 
 	public static int selectedAnswer;
 	public GameObject First;
@@ -104,8 +104,8 @@ public class Second_Dialogue : MonoBehaviour {
 			endAtLines = textLines.Length - 1;
 
 		/************** Answers *****************/
-		firstAns = this.transform.GetChild (0).gameObject;
-		secondAns = this.transform.GetChild (1).gameObject;
+	//	firstAns = this.transform.GetChild (0).gameObject;
+	//	secondAns = this.transform.GetChild (1).gameObject;
 	}
 
 	// Update is called once per frame
@@ -155,6 +155,8 @@ public class Second_Dialogue : MonoBehaviour {
 		{
 			if (!_isStringBeingRevealed)
 			{
+				
+
 				_textComponent2.text = "";
 				_isStringBeingRevealed = true;
 				//StartCoroutine(DisplayString(DialogueStrings[currentDialogueIndex++]));
@@ -162,6 +164,7 @@ public class Second_Dialogue : MonoBehaviour {
 				//print(currentDialogueIndex);
 				if (currentDialogueIndex <=3)
 				{
+					
 					// 본인 특징, 다 NPC가 말하는 거
 					isAnswer = false;
 					Pressed = true;
@@ -173,6 +176,7 @@ public class Second_Dialogue : MonoBehaviour {
 				}
 				else if(currentDialogueIndex %5 == 4)
 				{
+					HideButton ();
 					//NPC 질문
 					isAnswer = false;
 					Pressed = true;
@@ -182,6 +186,7 @@ public class Second_Dialogue : MonoBehaviour {
 				}
 				else
 				{
+					ShowButton ();
 					// Player 대답 선택해야 하는 부분
 
 					Pressed = false;
@@ -215,6 +220,7 @@ public class Second_Dialogue : MonoBehaviour {
 					_isEndOfDialogue = true;
 					start = false;
 					end ();
+					HideButton ();
 					Debug.Log ("Dialogue Ends!!!");
 				}
 			}
@@ -253,7 +259,7 @@ public class Second_Dialogue : MonoBehaviour {
 
 			if (currentCharacterIndex < stringLength)
 			{
-				if (Input.GetKey(DialogueInput))
+				if (Input.GetKeyDown(DialogueInput))
 				{
 					yield return new WaitForSeconds(SecondsBetweenCharacters * CharacterRateMultiplier);
 				}
@@ -265,25 +271,6 @@ public class Second_Dialogue : MonoBehaviour {
 		}
 
 		ShowIcon();
-
-	/*	if (isAnswer) {
-
-			if (Pressed) {
-				Debug.Log ("Pressed is True");
-				Debug.Log (selectedAnswer);
-				if (selectedAnswer == 1) {
-					//1 
-					print("1111");
-					NPC.CalculateScore (score1);
-
-				} else {
-					print ("2222");
-					NPC.CalculateScore (score2);
-				}
-				Pressed = false;
-			}
-
-		}*/
 
 		while (true)
 		{
@@ -323,7 +310,18 @@ public class Second_Dialogue : MonoBehaviour {
 		_isStringBeingRevealed = false;
 		_textComponent.text = "";
 	}
-
+	private void ShowButton(){
+		if (!FirstButton.activeSelf && !SecondButton.activeSelf) {
+			FirstButton.SetActive (true);
+			SecondButton.SetActive (true);
+		}
+	}
+	private void HideButton(){
+		if (FirstButton.activeSelf && SecondButton.activeSelf) {
+			FirstButton.SetActive (false);
+			SecondButton.SetActive (false);
+		}
+	}
 	private void HideIcons()
 	{
 		ContinueIcon.SetActive(false);

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ending : MonoBehaviour {
 
@@ -14,6 +15,10 @@ public class Ending : MonoBehaviour {
 	public string ending;
 	public GameObject Planet;
 
+
+	//씬매니저
+	public GameObject SceneChange;
+
 	// Use this for initialsization
 	void Start () {
 		isOver = false;
@@ -22,8 +27,16 @@ public class Ending : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		isEnd ();
 		if(isOver){
-			Decide_Ending();
+			//Decide_Ending();
+			//엔딩을 정한 후에 ~ 
+			//씬을 엔딩 씬으로 바꾸자
+
+			SceneManager.LoadScene("Ending");
+			//SceneManager.UnloadSceneAsync("3dscene");
+			//SceneChange.GetComponent<SceneChange>().ChangeEndingScene();
+
 		}
 
 	}
@@ -31,7 +44,7 @@ public class Ending : MonoBehaviour {
 	void isEnd(){
 		// when player reached the end (met every characters)
 		// as an example
-		if(player.transform.position.x >= done_Z)
+		if(player.transform.position.z >= done_Z)
 			isOver = true;
 
 	}

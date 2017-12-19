@@ -18,4 +18,7 @@ public class SceneChange : MonoBehaviour {
 	public void ChangeGameScene(){
 		SceneManager.LoadScene ("3dscene");
 	}
+	public void ChangeEndingScene(){
+		SceneManager.LoadScene ("Ending");
+	}
 }

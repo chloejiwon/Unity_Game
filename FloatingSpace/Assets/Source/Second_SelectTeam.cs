@@ -108,8 +108,11 @@ public class Second_SelectTeam : MonoBehaviour {
 					}
 					// why number does not change ??? :(...
 					player.Members[player.MemberNumber] = npc_num;
+					player.transform.GetChild (npc_num-1).gameObject.SetActive (true);
 					player.MemberNumber++;
 					print("합격!");
+
+					//옆에 같이 도는 거 띄우기
 
 					//Sound Effect!!
 					Happy.Play();
