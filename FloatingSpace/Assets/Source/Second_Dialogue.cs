@@ -117,8 +117,8 @@ public class Second_Dialogue : MonoBehaviour {
 			BG.SetActive(true);
 			First.SetActive(true);
 			Second.SetActive(true);
-			if (Input.GetKeyDown(KeyCode.Return))
-			{
+		//	if (Input.GetKeyDown(KeyCode.Return))
+		//	{
 				textBox.SetActive(true);
 				NameBox.SetActive(true);
 				if (!_isDialoguePlaying)
@@ -127,7 +127,7 @@ public class Second_Dialogue : MonoBehaviour {
 					StartCoroutine(StartDialogue());
 				}
 
-			}
+		//	}
 		}else
 		{
 			textBox.SetActive(false);
@@ -189,12 +189,14 @@ public class Second_Dialogue : MonoBehaviour {
 					isAnswer = true;
 
 					string temp;
-					temp = DialogueStrings[currentDialogueIndex] + "\n" + DialogueStrings[currentDialogueIndex + 2];
+					temp = DialogueStrings[currentDialogueIndex] + "\n\n" + DialogueStrings[currentDialogueIndex + 2];
 
 					/*********** Set Answers *********/
 					string temp1, temp2;
 					temp1 = DialogueStrings [currentDialogueIndex];
 					temp2 = DialogueStrings [currentDialogueIndex + 2];
+
+
 
 
 

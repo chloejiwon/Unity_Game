@@ -1,15 +1,24 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Second_SelectTeam : MonoBehaviour {
 
+	//sound effects
+	public AudioClip HappySound;
+	public AudioSource Happy;
+	public AudioClip UhohSound;
+	public AudioSource Uhoh;
 
 	//temp
 	public GameObject character;
 
 	//When Kick Out
 	public GameObject kickOut;
+
+	//When rejected
+	public GameObject Rejected;
+	public GameObject Selected;
 
 	public npc1 NPC;
 	public bool Clicked;
@@ -25,6 +34,11 @@ public class Second_SelectTeam : MonoBehaviour {
 		Talk = FindObjectOfType<Second_Dialogue>();
 		NPC = FindObjectOfType<npc1>();
 		Clicked = false;
+		Rejected.SetActive (false);
+		Selected.SetActive (false);
+
+		Happy.clip = HappySound;
+		Uhoh.clip = UhohSound;
 	}
 
 	// Update is called once per frame
@@ -36,6 +50,7 @@ public class Second_SelectTeam : MonoBehaviour {
 
 			// 다음꺼 부를 필요 없음
 //			print(NPC.name);
+
 
 			Clicked = false;
 
@@ -49,6 +64,7 @@ public class Second_SelectTeam : MonoBehaviour {
 			PlayerController player = FindObjectOfType<PlayerController> ();
 
 			player.gameObject.GetComponent<PlayerController> ().canMove = true;
+			player.gameObject.GetComponent<PlayerController> ().hasFriend = false;
 
 			this.transform.parent.GetChild(0).gameObject.SetActive(false);
 			this.transform.parent.GetChild(1).gameObject.SetActive(false);
@@ -95,6 +111,11 @@ public class Second_SelectTeam : MonoBehaviour {
 					player.MemberNumber++;
 					print("합격!");
 
+					//Sound Effect!!
+					Happy.Play();
+
+					Selected.SetActive (true);
+
 				}
 			else {
 					// 3명 이제 넘었다 !
@@ -114,6 +135,12 @@ public class Second_SelectTeam : MonoBehaviour {
 			{
 				//거절당하셧습니다..
 				print("you are rejected!");
+
+				//Sound Effect
+				Uhoh.Play();
+
+				Rejected.SetActive (true);
+
 			}
 	
 		}

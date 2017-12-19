@@ -32,6 +32,10 @@ public class PlayerController: MonoBehaviour {
 	public Sprite []npcImages;
 	public bool hasFriend;
 
+	//When Rejected
+	public GameObject Rejected;
+	public GameObject Selected;
+
 	// Use this for initialization
 	void Start () {
 		string name;
@@ -73,6 +77,13 @@ public class PlayerController: MonoBehaviour {
 
 		if (canMove) {
 
+			/*if (Rejected.activeSelf) {
+				// rejected 가 true면
+				Rejected.SetActive(false);
+			}
+			if (Selected.activeSelf) {
+				Selected.SetActive (false);
+			}*/
 			if (!IsTired) {
 
 				if (Members [0] != 0) {
@@ -145,7 +156,7 @@ public class PlayerController: MonoBehaviour {
 				if (i != 0) {
 					name = "friend" + cnt;
 					friend = GameObject.Find ("Friends");
-					friend.transform.FindChild(name).gameObject.SetActive (true);
+					friend.transform.Find(name).gameObject.SetActive (true);
 					cnt++;
 				}
 			}

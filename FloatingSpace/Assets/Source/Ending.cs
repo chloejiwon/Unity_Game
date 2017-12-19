@@ -42,6 +42,11 @@ public class Ending : MonoBehaviour {
 
 		switch(player.GetComponent<PlayerController>().MemberNumber){
 		case 1:
+			// 1명 만났을 때 그 친구에 맞게 
+			break;
+		case 2:
+			break;
+		case 3:
 			// 3명 만났을 때
 			// 각각 케이스별로 조사....(완전 망했다...머야 이 노가다 ㅠ )
 			if(player.GetComponent<PlayerController>().Members[0] == 1){
@@ -54,12 +59,6 @@ public class Ending : MonoBehaviour {
 					}
 				}
 			}
-			break;
-		case 2:
-			break;
-		case 3:
-				
-				
 			break;
 		case 0:
 			// 아무 캐릭터도 고르지 않았을 때
